@@ -27,6 +27,6 @@ function getFilms() {
     });
 }
 
-module exports = {
+module.exports = {
     getFilms
 }

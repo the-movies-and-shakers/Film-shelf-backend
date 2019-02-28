@@ -1,0 +1,26 @@
+{
+  "name": "Film-shelf-backend",
+  "version": "1.0.0",
+  "description": "A website for tracking and rating all the films you watch",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-movies-and-shakers/Film-shelf-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/the-movies-and-shakers/Film-shelf-backend/issues"
+  },
+  "homepage": "https://github.com/the-movies-and-shakers/Film-shelf-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "serverless-http": "^1.9.1"
+  }
+}

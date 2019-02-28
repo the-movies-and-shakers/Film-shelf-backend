@@ -13,15 +13,17 @@ const databaseService = require('./databaseservice');
 app.get('/films', function (request, response) {
 
   databaseService.getFilms()
-  .then(function(results){
-    response.json(results);
+    .then(function (results) {
+      response.json(results);
 
-})
+    })
 
-.catch (function(error){
+    .catch(function (error) {
 
-    response.status(500); 
-    response.json(error);
+      response.status(500);
+      response.json(error);
+    });
+
 });
-  
- })
+
+module.exports.handler = serverless(app);

@@ -5,12 +5,14 @@
 # uses to deploy your code to your provider of choice
 
 # The `service` block is the name of the service
-service: serverless-filmshelf
+service: filmshelf
 
 # The `provider` block defines where your service will be deployed
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs8.10
+  profile: filmshelf
+  region: eu-west-2
   environment:
       RDS_HOST: ${opt:RDS_HOST}
       RDS_USER: ${opt:RDS_USER}
