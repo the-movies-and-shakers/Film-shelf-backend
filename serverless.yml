@@ -1,0 +1,38 @@
+# Welcome to serverless. Read the docs
+# https://serverless.com/framework/docs/
+
+# Serverless.yml is the configuration the CLI
+# uses to deploy your code to your provider of choice
+
+# The `service` block is the name of the service
+service: serverless-filmshelf
+
+# The `provider` block defines where your service will be deployed
+provider:
+  name: aws
+  runtime: nodejs6.10
+  environment:
+      RDS_HOST: ${opt:RDS_HOST}
+      RDS_USER: ${opt:RDS_USER}
+      RDS_PASSWORD: ${opt:RDS_PASSWORD}
+      RDS_DATABASE: ${opt:RDS_DATABASE}
+
+
+  # [profile:filmshelf]
+  #   name: aws
+  #   runtime: nodejs8.10
+  #   stage: dev
+  #   profile: filmshelf
+    
+
+
+# The `functions` block defines what code to deploy
+functions:
+  helloWorld:
+    handler: films.handler
+    # The `events` block defines how to trigger the handler.helloWorld code
+    events:
+      - http:
+          path: films
+          method: get
+          cors: true
