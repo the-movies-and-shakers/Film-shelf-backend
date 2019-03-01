@@ -19,22 +19,20 @@ provider:
       RDS_PASSWORD: ${opt:RDS_PASSWORD}
       RDS_DATABASE: ${opt:RDS_DATABASE}
 
-
-  # [profile:filmshelf]
-  #   name: aws
-  #   runtime: nodejs8.10
-  #   stage: dev
-  #   profile: filmshelf
     
 
 
 # The `functions` block defines what code to deploy
 functions:
-  helloWorld:
+  films:
     handler: films.handler
     # The `events` block defines how to trigger the handler.helloWorld code
     events:
       - http:
           path: films
           method: get
+          cors: true
+      - http:
+          path: films/{filmId}
+          method: delete
           cors: true

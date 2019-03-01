@@ -26,4 +26,21 @@ app.get('/films', function (request, response) {
 
 });
 
+app.delete('/films/:filmId', function (request, response) {
+
+  databaseService.deleteFilm()
+  
+  .then(function (results) {
+    response.json(results);
+
+  })
+
+  .catch(function (error) {
+
+    response.status(500);
+    response.json(error);
+  });
+});
+
+
 module.exports.handler = serverless(app);
