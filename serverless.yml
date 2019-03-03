@@ -36,3 +36,11 @@ functions:
           path: films/{filmId}
           method: delete
           cors: true
+      - http:
+          path: films
+          method: post
+          cors: true
+      - http:
+          path: tasks/{filmId}
+          method: put
+          cors: true
