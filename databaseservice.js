@@ -12,7 +12,7 @@ function getDatabaseConnection() {
 function getFilms() {
     const connection = getDatabaseConnection();
     return new Promise(function(resolve, reject) {
-        connection.query("SELECT * FROM filmshelf", function(error, results, fields) {
+        connection.query( "SELECT * FROM filmdata", function(error, results, fields) {
             if (error) {
                 connection.destroy();
                 return reject(error);
@@ -27,10 +27,13 @@ function getFilms() {
     });
 }
 
-function deleteFilm() {
+function deleteFilm(filmId){
+    
     const connection = getDatabaseConnection();
+
     return new Promise(function(resolve, reject) {
-        connection.query('DELETE FROM Tasks WHERE filmId = ?',[filmId], function(error, results, fields) {
+    
+        connection.query('DELETE FROM filmdata WHERE filmId= ?',[filmId], function(error, results, fields) {
             if (error) {
                 connection.destroy();
                 return reject(error);
@@ -48,5 +51,5 @@ function deleteFilm() {
 
 module.exports = {
     getFilms,
-    deleteFilm
+    deleteFilm,
 }
