@@ -28,8 +28,10 @@ app.get('/films', function (request, response) {
 
 app.delete('/films/:filmId', function (request, response) {
 
-  databaseService.deleteFilm()
+  const filmToBeDeleted = request.params.filmId;
   
+  databaseService.deleteFilm(filmToBeDeleted)
+
   .then(function (results) {
     response.json(results);
 
@@ -41,6 +43,8 @@ app.delete('/films/:filmId', function (request, response) {
     response.json(error);
   });
 });
+
+
 
 
 module.exports.handler = serverless(app);
