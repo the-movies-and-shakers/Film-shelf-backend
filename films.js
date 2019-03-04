@@ -5,10 +5,8 @@ const cors = require('cors');
 
 app.use(express.json());
 app.use(cors());
+
 const databaseService = require('./databaseservice');
-
-
-
 
 app.get('/films', function (request, response) {
 
@@ -19,11 +17,9 @@ app.get('/films', function (request, response) {
     })
 
     .catch(function (error) {
-
       response.status(500);
       response.json(error);
     });
-
 });
 
 app.delete('/films/:filmId', function (request, response) {
@@ -44,6 +40,65 @@ app.delete('/films/:filmId', function (request, response) {
   });
 });
 
+app.post("/films", function(request, response) {
+  
+  const filmTitle = request.body.filmTitle;
+  databaseService.saveFilm(filmTitle).then(function(results){
+    // response.json(results);
+    response.json({message: 'you did a post'});
+  })
+
+  .catch(function(error) {
+    response.status(500);
+    response.json(error);
+  });
+})
+
+//I dont think we need this as we dont need to mark the film as being completed: -
+
+// app.put('/films/:filmId', function (request, response) {
+
+//   const filmToComplete = request.params.filmId;
+
+//   databaseService.completeFilm(filmToComplete)
+  
+//   .then(function(results) {
+
+//     response.json(results);
+
+//   })
+
+//   .catch(function(error) {
+
+//     response.status(500);
+//     response.json(error);
+
+//   });
+
+// });
+
+app.put('/films/editfilm/:editedFilmTitle', function (request, response) {
+
+  const editedFilm = request.params.editedFilmTitle;
+
+  const identifier = request.params.filmId;
+
+  databaseService.editFilm(editedFilm, identifier)
+  
+  .then(function(results) {
+
+    response.json(results);
+
+  })
+
+  .catch(function(error) {
+
+    response.status(500);
+    response.json(error);
+
+  });
+
+});
 
 
 
