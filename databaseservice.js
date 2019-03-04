@@ -12,7 +12,7 @@ function getDatabaseConnection() {
 function getFilms() {
     const connection = getDatabaseConnection();
     return new Promise(function(resolve, reject) {
-        connection.query("SELECT * FROM filmshelf", function(error, results, fields) {
+        connection.query( "SELECT * FROM filmdata", function(error, results, fields) {
             if (error) {
                 connection.destroy();
                 return reject(error);
@@ -27,10 +27,13 @@ function getFilms() {
     });
 }
 
-function deleteFilm() {
+function deleteFilm(filmId){
+    
     const connection = getDatabaseConnection();
+
     return new Promise(function(resolve, reject) {
-        connection.query('DELETE FROM Tasks WHERE filmId = ?',[filmId], function(error, results, fields) {
+    
+        connection.query('DELETE FROM filmdata WHERE filmId= ?',[filmId], function(error, results, fields) {
             if (error) {
                 connection.destroy();
                 return reject(error);
@@ -51,8 +54,10 @@ function saveFilm(filmTitle) {
     return new Promise(function(resolve, reject) {
 
         const postData = {
-            Description: filmTitle,
-            userId: 1 //should this say filmId?
+            filmTitle: filmTitle,
+            genre: genre,
+            rating: rating,
+            filmId: 1
         };
         connection.query('INSERT INTO filmdata SET ?', postData, function (error, results, fields) {
             if (error) {

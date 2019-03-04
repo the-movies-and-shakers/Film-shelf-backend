@@ -24,8 +24,10 @@ app.get('/films', function (request, response) {
 
 app.delete('/films/:filmId', function (request, response) {
 
-  databaseService.deleteFilm()
+  const filmToBeDeleted = request.params.filmId;
   
+  databaseService.deleteFilm(filmToBeDeleted)
+
   .then(function (results) {
     response.json(results);
 
@@ -42,8 +44,8 @@ app.post("/films", function(request, response) {
   
   const filmTitle = request.body.filmTitle;
   databaseService.saveFilm(filmTitle).then(function(results){
-    response.json(results);
-
+    // response.json(results);
+    response.json({message: 'you did a post'});
   })
 
   .catch(function(error) {
@@ -97,5 +99,7 @@ app.put('/films/editfilm/:editedFilmTitle', function (request, response) {
   });
 
 });
+
+
 
 module.exports.handler = serverless(app);
