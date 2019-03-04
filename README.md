@@ -7,7 +7,7 @@
 A website for tracking and rating all the films you watch.
 
 
-<!-- Setting up - Coding and repository  -->
+*** Setting up - VSC and GitHub repository *** 
 
 To set up the serverless deploy, the stages are as follows:
 
@@ -38,14 +38,14 @@ To set up the serverless deploy, the stages are as follows:
     URL obtained for each function by running this command in the backend repository in terminal; 
 
 `serverless deploy --RDS_HOST filmshelf.cumx1fonobcm.eu-west-2.rds.amazonaws.com --RDS_USER film --RDS_PASSWORD ********* --RDS_DATABASE filmdatabase`
-*********This needs running every time the code is updated/resaved*********
+***Note: This needs running every time the code is updated/resaved***
 
 10) Use the corresponding URL to check each function is working correctly.  
 
 
 
 
-<!-- Creating the Mysql database  -->
+*** Creating the Mysql database ***
 
 
 1) Installing Mysql- 
@@ -61,6 +61,9 @@ To set up the serverless deploy, the stages are as follows:
 
 3) Then enter Password as prompted by Command Line on Terminal, to give access to the database. 
  Overview of Database structure at present: 
+
+
+
 +------------------------+
 | Tables_in_filmdatabase |
 +------------------------+
@@ -68,6 +71,8 @@ To set up the serverless deploy, the stages are as follows:
 | filmshelf              |
 | user                   |
 +------------------------+
+
+
 
 filmdata Table  
 
@@ -85,15 +90,15 @@ filmdata Table
 +---------------------------+----------+--------+--------+
 (subject to change)
 
-<!-- AWS Set up   -->
+*** AWS Set up ***
 
- 4 Users set up for database access- each with own key/secret key generated and password.  
+ 4 Individual users set up for database access- each with own key/secret key generated and password.  
 
 Details: 
 Master username: film 
 DBInstance: filmshelf
 
-Need to make sure that number 4) from list above is carried in to configure this. 
+Configure as steps 3( and 4) above. 
 
 
 
