@@ -44,10 +44,8 @@ app.post("/films", function(request, response) {
   
   const filmTitle = request.body.filmTitle;
   databaseService.saveFilm(filmTitle).then(function(results){
-    // response.json(results);
-    response.json({message: 'you did a post'});
+    response.json(results);
   })
-
   .catch(function(error) {
     response.status(500);
     response.json(error);
@@ -77,28 +75,28 @@ app.post("/films", function(request, response) {
 
 // });
 
-app.put('/films/editfilm/:editedFilmTitle', function (request, response) {
+// app.put('/films/editfilm/:editedFilmTitle', function (request, response) {
 
-  const editedFilm = request.params.editedFilmTitle;
+//   const editedFilm = request.params.editedFilmTitle;
 
-  const identifier = request.params.filmId;
+//   const identifier = request.params.filmId;
 
-  databaseService.editFilm(editedFilm, identifier)
+//   databaseService.editFilm(editedFilm, identifier)
   
-  .then(function(results) {
+//   .then(function(results) {
 
-    response.json(results);
+//     response.json(results);
 
-  })
+//   })
 
-  .catch(function(error) {
+//   .catch(function(error) {
 
-    response.status(500);
-    response.json(error);
+//     response.status(500);
+//     response.json(error);
 
-  });
+//   });
 
-});
+// });
 
 
 

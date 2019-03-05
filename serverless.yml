@@ -40,7 +40,7 @@ functions:
           path: films
           method: post
           cors: true
-      - http:
-          path: tasks/{filmId}
-          method: put
-          cors: true
+      # - http:
+      #     path: tasks/{filmId}
+      #     method: put
+      #     cors: true

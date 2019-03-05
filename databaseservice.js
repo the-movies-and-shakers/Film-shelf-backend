@@ -54,12 +54,12 @@ function saveFilm(filmTitle) {
     return new Promise(function(resolve, reject) {
 
         const postData = {
-            filmTitle: filmTitle,
-            genre: genre,
-            rating: rating,
-            filmId: 1
+            filmTitle: filmTitle, 
+            genre: Drama,
+            rating: 1,
+            userId: 15,
         };
-        connection.query('INSERT INTO filmdata SET ?', postData, function (error, results, fields) {
+        connection.query('INSERT INTO films SET ?', postData, function (error, results, fields) {
             if (error) {
             connection.destroy();
             return reject(error);
@@ -96,30 +96,30 @@ function saveFilm(filmTitle) {
 //     });
 //  };
 
-function editFilm(editedFilmTitle, identifier) {
+// function editFilm(editedFilmTitle, identifier) {
 
-    const connection = getDatabaseConnection();
+//     const connection = getDatabaseConnection();
 
-    return new Promise(function(resolve, reject) {
+//     return new Promise(function(resolve, reject) {
 
-        connection.query("UPDATE films SET filmTitle = ? WHERE filmId = ?", editedFilmTitle, identifier, function (error, results, fields) {
-            if (error) {
-                connection.destroy();
-                return reject(error);
-            }
-            else {
-                connection.end(function() {
-                    return resolve(results);
-                });
-            }
-        });
-    });
- };
+//         connection.query("UPDATE films SET filmTitle = ? WHERE filmId = ?", editedFilmTitle, identifier, function (error, results, fields) {
+//             if (error) {
+//                 connection.destroy();
+//                 return reject(error);
+//             }
+//             else {
+//                 connection.end(function() {
+//                     return resolve(results);
+//                 });
+//             }
+//         });
+//     });
+//  };
 
 module.exports = {
     getFilms,
     deleteFilm,
     saveFilm,
     // completeFilm,
-    editFilm
+    // editFilm
 };
