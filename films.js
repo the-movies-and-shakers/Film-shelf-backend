@@ -43,7 +43,10 @@ app.delete('/films/:filmId', function (request, response) {
 app.post("/films", function(request, response) {
   
   const filmTitle = request.body.filmTitle;
-  databaseService.saveFilm(filmTitle).then(function(results){
+  const genre = request.body.genre;
+  const rating = request.body.rating;
+
+  databaseService.saveFilm(filmTitle, genre, rating).then(function(results){
     response.json(results);
   })
   .catch(function(error) {
@@ -51,53 +54,5 @@ app.post("/films", function(request, response) {
     response.json(error);
   });
 })
-
-//I dont think we need this as we dont need to mark the film as being completed: -
-
-// app.put('/films/:filmId', function (request, response) {
-
-//   const filmToComplete = request.params.filmId;
-
-//   databaseService.completeFilm(filmToComplete)
-  
-//   .then(function(results) {
-
-//     response.json(results);
-
-//   })
-
-//   .catch(function(error) {
-
-//     response.status(500);
-//     response.json(error);
-
-//   });
-
-// });
-
-// app.put('/films/editfilm/:editedFilmTitle', function (request, response) {
-
-//   const editedFilm = request.params.editedFilmTitle;
-
-//   const identifier = request.params.filmId;
-
-//   databaseService.editFilm(editedFilm, identifier)
-  
-//   .then(function(results) {
-
-//     response.json(results);
-
-//   })
-
-//   .catch(function(error) {
-
-//     response.status(500);
-//     response.json(error);
-
-//   });
-
-// });
-
-
 
 module.exports.handler = serverless(app);
