@@ -48,18 +48,17 @@ function deleteFilm(filmId){
     });
 }
 
-function saveFilm(filmTitle) {
+function saveFilm(filmTitle, genre, rating) {
     const connection = getDatabaseConnection();
 
     return new Promise(function(resolve, reject) {
 
         const postData = {
             filmTitle: filmTitle, 
-            genre: Drama,
-            rating: 1,
-            userId: 15,
+            genre: genre,
+            rating: rating
         };
-        connection.query('INSERT INTO films SET ?', postData, function (error, results, fields) {
+        connection.query('INSERT INTO filmdata SET ?', postData, function (error, results, fields) {
             if (error) {
             connection.destroy();
             return reject(error);
@@ -74,52 +73,8 @@ function saveFilm(filmTitle) {
     });
 }
 
-//I dont think we need this as we dont need to mark the film as being completed: -
-
-// function completeFilm(filmIdToComplete) {
-
-//     const connection = getDatabaseConnection();
-
-//     return new Promise(function(resolve, reject) {
-
-//         connection.query("UPDATE film SET Completed = 1 WHERE FilmID = ?", filmIdToComplete, function (error, results, fields) {
-//             if (error) {
-//                 connection.destroy();
-//                 return reject(error);
-//             }
-//             else {
-//                 connection.end(function() {
-//                     return resolve(results);
-//                 });
-//             }
-//         });
-//     });
-//  };
-
-// function editFilm(editedFilmTitle, identifier) {
-
-//     const connection = getDatabaseConnection();
-
-//     return new Promise(function(resolve, reject) {
-
-//         connection.query("UPDATE films SET filmTitle = ? WHERE filmId = ?", editedFilmTitle, identifier, function (error, results, fields) {
-//             if (error) {
-//                 connection.destroy();
-//                 return reject(error);
-//             }
-//             else {
-//                 connection.end(function() {
-//                     return resolve(results);
-//                 });
-//             }
-//         });
-//     });
-//  };
-
 module.exports = {
     getFilms,
     deleteFilm,
     saveFilm,
-    // completeFilm,
-    // editFilm
 };
